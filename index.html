@@ -48,7 +48,7 @@
   @keyframes fly{from{transform:translateX(-10vw) translateY(0) rotate(8deg)}50%{transform:translateX(55vw) translateY(-40px) rotate(4deg)}to{transform:translateX(120vw) translateY(10px) rotate(10deg)}}
   .star{position:absolute;border-radius:50%;background:#fff;opacity:.7;animation:twinkle 3s ease-in-out infinite}
   @keyframes twinkle{0%,100%{opacity:.15}50%{opacity:.8}}
-  .music-btn{position:absolute;right:clamp(18px,5vw,52px);bottom:70px;z-index:12;width:46px;height:46px;
+  .music-btn{position:fixed;right:clamp(18px,5vw,52px);bottom:24px;z-index:70;width:46px;height:46px;
     display:grid;place-items:center;background:rgba(255,255,255,.16);color:#fff;border:1px solid rgba(255,255,255,.38);
     border-radius:50%;font-size:1.35rem;cursor:pointer;box-shadow:0 12px 28px rgba(0,0,0,.22);
     backdrop-filter:blur(8px);transition:transform .18s ease,background .18s ease}
@@ -185,6 +185,7 @@
   .wish-form input:focus,.wish-form textarea:focus{outline:none;border-color:var(--coral)}
   .wish-form input{flex:1 1 180px}
   .wish-form textarea{flex:3 1 320px;resize:vertical;min-height:52px}
+  .wish-status{margin:-18px 0 28px;color:var(--muted);font-size:.9rem;min-height:1.3em}
   .wishes{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
   .wish{border-radius:18px;padding:22px;box-shadow:var(--shadow);background:var(--card);border-top:5px solid var(--gold);animation:wishIn .5s cubic-bezier(.2,1.4,.4,1)}
   .wish:nth-child(3n){border-top-color:var(--coral)} .wish:nth-child(3n+1){border-top-color:var(--teal)}
@@ -312,6 +313,7 @@
       <textarea id="wishText" placeholder="Your wish for Varun Dai…" maxlength="280" required></textarea>
       <button class="btn btn-coral" type="submit">Post wish 🎈</button>
     </form>
+    <p class="wish-status" id="wishStatus"></p>
     <div class="wishes" id="wishes"></div>
   </div>
 </section>
@@ -570,28 +572,71 @@ renderQuiz();
 
 /* ================= wish wall ================= */
 const wishesEl = document.getElementById('wishes');
-function loadWishes(){
+const wishStatus = document.getElementById('wishStatus');
+const WISH_STORAGE_KEY = 'celebrate-wishes';
+const WISH_API_URL = ''; // Add a Supabase/Firebase/serverless endpoint here to share wishes across devices.
+
+function getLocalWishes(){
   let saved = [];
-  try{ saved = JSON.parse(localStorage.getItem('celebrate-wishes') || '[]'); }catch(e){}
+  try{ saved = JSON.parse(localStorage.getItem(WISH_STORAGE_KEY) || '[]'); }catch(e){}
   return saved;
 }
+function saveLocalWishes(wishes){
+  localStorage.setItem(WISH_STORAGE_KEY, JSON.stringify(wishes.slice(0,50)));
+}
+async function loadRemoteWishes(){
+  if(!WISH_API_URL) return null;
+  const res = await fetch(WISH_API_URL, {cache:'no-store'});
+  if(!res.ok) throw new Error('Could not load wishes');
+  const data = await res.json();
+  return Array.isArray(data) ? data : (data.wishes || []);
+}
+async function saveRemoteWish(wish){
+  if(!WISH_API_URL) return false;
+  const res = await fetch(WISH_API_URL, {
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(wish)
+  });
+  return res.ok;
+}
 function esc(s){ const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
-function renderWishes(){
-  wishesEl.innerHTML = loadWishes().map(w=>`<div class="wish"><p>${esc(w.text)}</p><div class="who">— ${esc(w.who)}</div></div>`).join('');
+function setWishStatus(message){
+  wishStatus.textContent = message || '';
+}
+async function renderWishes(){
+  let wishes = getLocalWishes();
+  try{
+    const remoteWishes = await loadRemoteWishes();
+    if(remoteWishes){
+      wishes = remoteWishes;
+      saveLocalWishes(wishes);
+      setWishStatus('');
+    }
+  }catch(e){
+    setWishStatus('Showing wishes saved on this device.');
+  }
+  wishesEl.innerHTML = wishes.map(w=>`<div class="wish"><p>${esc(w.text)}</p><div class="who">— ${esc(w.who)}</div></div>`).join('');
 }
 renderWishes();
-document.getElementById('wishForm').addEventListener('submit', e=>{
+document.getElementById('wishForm').addEventListener('submit', async e=>{
   e.preventDefault();
   const who = document.getElementById('wishName').value.trim();
   const text = document.getElementById('wishText').value.trim();
   if(!who || !text) return;
-  let saved = [];
-  try{ saved = JSON.parse(localStorage.getItem('celebrate-wishes') || '[]'); }catch(e){}
-  saved.unshift({who, text});
-  localStorage.setItem('celebrate-wishes', JSON.stringify(saved.slice(0,50)));
+  const wish = {who, text, createdAt:new Date().toISOString()};
+  const saved = getLocalWishes();
+  saved.unshift(wish);
+  saveLocalWishes(saved);
   e.target.reset();
   renderWishes();
   burst(80);
+  try{
+    const savedRemote = await saveRemoteWish(wish);
+    setWishStatus(savedRemote ? 'Saved for everyone.' : 'Saved on this device.');
+  }catch(err){
+    setWishStatus('Saved on this device. Shared storage is not connected yet.');
+  }
 });
 
 /* ================= balloons ================= */
