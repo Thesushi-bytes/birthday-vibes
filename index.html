@@ -203,7 +203,7 @@
 </head>
 <body>
 
-<button class="music-btn" id="musicBtn">🎵 Play music</button>
+<button class="music-btn" id="musicBtn">🔇 Stop music</button>
 <canvas class="confetti-canvas" id="confetti"></canvas>
 
 <!-- HERO -->
@@ -613,14 +613,25 @@ document.getElementById('balloonBtn').addEventListener('click', ()=>{
 });
 
 /* ================= music (WebAudio 'Happy Birthday') ================= */
-let musicCtx = null, musicOn = false, musicTimer = null;
+let musicCtx = null, musicGain = null, musicOn = true, musicStarted = false, musicTimer = null;
 const MELODY = [ // [semitone offset from C5, beats]
   [0,.75],[0,.25],[2,1],[0,1],[5,1],[4,2],
   [0,.75],[0,.25],[2,1],[0,1],[7,1],[5,2],
   [0,.75],[0,.25],[12,1],[9,1],[5,1],[4,1],[2,2],
   [10,.75],[10,.25],[9,1],[5,1],[7,1],[5,2]
 ];
+function getMusicContext(){
+  const AudioEngine = window.AudioContext || window.webkitAudioContext;
+  musicCtx = musicCtx || new AudioEngine();
+  if(!musicGain){
+    musicGain = musicCtx.createGain();
+    musicGain.gain.value = .8;
+    musicGain.connect(musicCtx.destination);
+  }
+  return musicCtx;
+}
 function playMelody(){
+  if(!musicOn) return;
   const bpm = 110, beat = 60/bpm;
   let t = musicCtx.currentTime + .1;
   for(const [semi,beats] of MELODY){
@@ -630,22 +641,44 @@ function playMelody(){
     g.gain.setValueAtTime(0, t);
     g.gain.linearRampToValueAtTime(.18, t + .03);
     g.gain.exponentialRampToValueAtTime(.001, t + beats*beat*.92);
-    osc.connect(g).connect(musicCtx.destination);
+    osc.connect(g).connect(musicGain);
     osc.start(t); osc.stop(t + beats*beat);
     t += beats*beat;
   }
   musicTimer = setTimeout(()=>{ if(musicOn) playMelody(); }, (t - musicCtx.currentTime + .5) * 1000);
 }
+function startMusic(){
+  musicOn = true;
+  const ctx = getMusicContext();
+  musicGain.gain.cancelScheduledValues(ctx.currentTime);
+  musicGain.gain.setValueAtTime(.8, ctx.currentTime);
+  this?.blur?.();
+  document.getElementById('musicBtn').textContent = '🔇 Stop music';
+  ctx.resume().then(()=>{
+    if(!musicOn || musicStarted) return;
+    musicStarted = true;
+    playMelody();
+  }).catch(()=>{});
+}
+function stopMusic(){
+  musicOn = false;
+  musicStarted = false;
+  clearTimeout(musicTimer);
+  if(musicCtx && musicGain){
+    musicGain.gain.cancelScheduledValues(musicCtx.currentTime);
+    musicGain.gain.setValueAtTime(0, musicCtx.currentTime);
+  }
+  document.getElementById('musicBtn').textContent = '🎵 Play music';
+}
 document.getElementById('musicBtn').addEventListener('click', function(){
   if(!musicOn){
-    musicCtx = musicCtx || new AudioContext();
-    musicCtx.resume();
-    musicOn = true; this.textContent = '🔇 Stop music';
-    playMelody();
+    startMusic.call(this);
   }else{
-    musicOn = false; clearTimeout(musicTimer); this.textContent = '🎵 Play music';
+    stopMusic();
   }
 });
+startMusic();
+document.addEventListener('pointerdown', ()=>{ if(musicOn && !musicStarted) startMusic(); }, {once:true});
 </script>
 </body>
 </html>
