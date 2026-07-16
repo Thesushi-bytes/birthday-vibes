@@ -317,7 +317,7 @@
 <!-- FOOTER -->
 <section class="footer">
   <p class="kicker">One more thing</p>
-  <h2>Send her off in style</h2>
+  <h2>Send him off in style</h2>
   <p class="sub" style="margin:0 auto 30px">Release a balloon into the page. Pop them if you dare.</p>
   <button class="btn btn-coral" id="balloonBtn">🎈 Release balloons</button>
   <p class="made-with">Prototype of an AI-generated celebration page · theme: <b>Traveler</b> · built for the <b>CelebrateAI</b> concept</p>
@@ -382,11 +382,6 @@ const person = {
     {q:"What is Varun Dai's iconic dialogue?", opts:["“Baaal ho.”","“Ke garne.”","“Estimate it yourself.”","“One last bug.”"], a:0},
     {q:"How did the squad crash the family celebration?", opts:["As musicians","Disguised as cake delivery guys","As lost tourists","Through the back door"], a:1},
     {q:"What did Varun Dai just complete in the USA?", opts:["A marathon","An MBA","A Master's in Computer Science","A coding bootcamp"], a:2}
-  ],
-  seedWishes: [
-    {who:"Sushi", text:"Happy birthday dai! From square-table colleagues to family. Come back soon so Saturdays can be Saturdays again. 🏍️💛"},
-    {who:"The Meme Group", text:"Started with Shweta dd's gift, ended up as family. Congratulations on the Master's — Baaal ho! 🎓😂"},
-    {who:"The square table @ NAXA", text:"It's been quiet without you. Someone even stays awake at their desk now. Come visit. 😴"}
   ]
 };
 
@@ -576,7 +571,7 @@ const wishesEl = document.getElementById('wishes');
 function loadWishes(){
   let saved = [];
   try{ saved = JSON.parse(localStorage.getItem('celebrate-wishes') || '[]'); }catch(e){}
-  return [...saved, ...person.seedWishes];
+  return saved;
 }
 function esc(s){ const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
 function renderWishes(){
