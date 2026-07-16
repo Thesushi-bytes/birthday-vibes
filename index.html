@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday, Varun Dai! 🎂</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,800;1,600&family=DM+Sans:wght@400;500;700&family=Caveat:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fff9f2; --bg-alt:#ffefe2; --ink:#33291f; --muted:#8a7a68;
+    --coral:#ff6b57; --coral-deep:#e04a37; --teal:#0e9594; --gold:#f4b942;
+    --plum:#4a2545; --card:#ffffff; --shadow:0 10px 30px rgba(74,37,69,.10);
+    --display:'Fraunces',Georgia,serif; --body:'DM Sans',system-ui,sans-serif; --hand:'Caveat',cursive;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--body);color:var(--ink);background:var(--bg);overflow-x:hidden}
+  section{padding:96px 24px}
+  .wrap{max-width:1000px;margin:0 auto}
+  h2{font-family:var(--display);font-size:clamp(1.9rem,4vw,2.8rem);margin-bottom:8px}
+  .kicker{text-transform:uppercase;letter-spacing:.18em;font-size:.75rem;font-weight:700;color:var(--coral-deep);margin-bottom:12px}
+  .sub{color:var(--muted);max-width:560px;margin-bottom:40px}
+
+  /* ---------- hero ---------- */
+  .hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;
+    background:linear-gradient(180deg,#2b1a3d 0%,#4a2545 30%,#b34a5e 62%,#ff8c5f 85%,#ffc46b 100%);
+    color:#fff;position:relative;overflow:hidden;padding:40px 24px 76px}
+  .hero-inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:clamp(28px,5vw,90px);max-width:1150px}
+  .hero-copy{max-width:560px}
+  .hero .badge{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);backdrop-filter:blur(6px);
+    padding:8px 18px;border-radius:999px;font-size:.85rem;letter-spacing:.08em;margin-bottom:28px}
+  .hero h1{font-family:var(--display);font-weight:800;font-size:clamp(2.2rem,5.5vw,4.2rem);line-height:1.05;text-shadow:0 4px 30px rgba(0,0,0,.25)}
+  .hero h1 .name{display:inline-block;color:var(--gold)}
+  .hero h1 span.l{display:inline-block;animation:pop .6s cubic-bezier(.2,1.6,.4,1) both}
+  @keyframes pop{from{transform:translateY(30px) scale(.6);opacity:0}to{transform:none;opacity:1}}
+  .hero .tag{margin-top:18px;font-size:clamp(1rem,2.4vw,1.25rem);opacity:.9;font-style:italic;font-family:var(--display)}
+  .countdown{display:flex;gap:14px;margin-top:28px;flex-wrap:wrap;justify-content:center}
+  .count-cell{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);backdrop-filter:blur(6px);
+    border-radius:16px;padding:14px 18px;min-width:86px}
+  .count-cell b{display:block;font-size:2rem;font-family:var(--display)}
+  .count-cell small{opacity:.8;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase}
+  .today-banner{margin-top:26px;font-family:var(--hand);font-size:clamp(1.4rem,3vw,2rem);color:var(--gold);animation:sway 2.4s ease-in-out infinite}
+  @keyframes sway{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg)}}
+  .hero .scroll-cue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);opacity:.85;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;animation:bob 1.8s ease-in-out infinite}
+  @keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,8px)}}
+  .plane{position:absolute;top:14%;left:-80px;font-size:2rem;animation:fly 16s linear infinite;opacity:.9}
+  @keyframes fly{from{transform:translateX(-10vw) translateY(0) rotate(8deg)}50%{transform:translateX(55vw) translateY(-40px) rotate(4deg)}to{transform:translateX(120vw) translateY(10px) rotate(10deg)}}
+  .star{position:absolute;border-radius:50%;background:#fff;opacity:.7;animation:twinkle 3s ease-in-out infinite}
+  @keyframes twinkle{0%,100%{opacity:.15}50%{opacity:.8}}
+  .music-btn{position:fixed;top:18px;right:18px;z-index:60;background:var(--plum);color:#fff;border:none;border-radius:999px;
+    padding:10px 18px;font-family:var(--body);font-weight:700;font-size:.85rem;cursor:pointer;box-shadow:var(--shadow)}
+  .music-btn:hover{transform:scale(1.05)}
+
+  /* ---------- letter ---------- */
+  .letter-card{background:var(--card);border-radius:24px;box-shadow:var(--shadow);padding:clamp(28px,5vw,56px);
+    max-width:760px;margin:0 auto;position:relative;border-top:6px solid var(--coral)}
+  .letter-card p{line-height:1.85;margin-bottom:1.1em;font-size:1.05rem}
+  .letter-card .sign{font-family:var(--hand);font-size:1.9rem;color:var(--coral-deep);text-align:right}
+  .stamp{position:absolute;top:-22px;right:34px;background:var(--gold);border-radius:12px;padding:10px 14px;
+    font-size:1.5rem;transform:rotate(6deg);box-shadow:var(--shadow)}
+
+  /* ---------- cake ---------- */
+  .cake-stage{position:relative;width:min(360px,80vw);margin:30px auto 0}
+  .cake{position:relative;filter:drop-shadow(0 16px 24px rgba(74,37,69,.18))}
+  .layer{margin:0 auto;border-radius:14px;position:relative}
+  .layer.top{width:52%;height:64px;background:linear-gradient(180deg,#ff8f7d,#ff6b57);border-radius:14px 14px 4px 4px}
+  .layer.mid{width:74%;height:70px;background:linear-gradient(180deg,#ffd98a,#f4b942)}
+  .layer.base{width:96%;height:78px;background:linear-gradient(180deg,#31b3b2,#0e9594);border-radius:4px 4px 16px 16px}
+  .drip{position:absolute;top:-2px;left:0;right:0;height:22px;
+    background:radial-gradient(circle at 10% 0,#fff4e6 8px,transparent 9px),radial-gradient(circle at 30% 0,#fff4e6 11px,transparent 12px),
+    radial-gradient(circle at 52% 0,#fff4e6 8px,transparent 9px),radial-gradient(circle at 72% 0,#fff4e6 12px,transparent 13px),
+    radial-gradient(circle at 90% 0,#fff4e6 8px,transparent 9px)}
+  .plate{width:110%;height:16px;background:#e8dccb;border-radius:999px;margin:-4px auto 0;position:relative;left:-5%}
+  .candles{position:absolute;top:-52px;left:0;width:100%;display:flex;justify-content:center;gap:26px;z-index:5}
+  .candle{width:12px;height:44px;border-radius:5px;position:relative;cursor:pointer;
+    background:repeating-linear-gradient(45deg,#fff 0 6px,var(--coral) 6px 12px)}
+  .candle:nth-child(2){background:repeating-linear-gradient(45deg,#fff 0 6px,var(--teal) 6px 12px)}
+  .candle:nth-child(3){background:repeating-linear-gradient(45deg,#fff 0 6px,var(--gold) 6px 12px)}
+  .candle:nth-child(4){background:repeating-linear-gradient(45deg,#fff 0 6px,var(--plum) 6px 12px)}
+  .flame{position:absolute;top:-20px;left:50%;transform:translateX(-50%);width:14px;height:20px;
+    background:radial-gradient(circle at 50% 80%,#ffdd55 0%,#ff9d2e 60%,transparent 75%);
+    border-radius:50% 50% 50% 50%/60% 60% 40% 40%;animation:flicker .22s ease-in-out infinite alternate;transform-origin:bottom center}
+  @keyframes flicker{from{transform:translateX(-50%) scale(1) rotate(-3deg)}to{transform:translateX(-58%) scale(1.12) rotate(4deg)}}
+  .candle.out .flame{animation:puff .5s ease-out forwards}
+  @keyframes puff{to{transform:translateX(-50%) translateY(-26px) scale(.1);opacity:0}}
+  .candle.out::after{content:'';position:absolute;top:-16px;left:50%;width:6px;height:14px;border-radius:50%;
+    background:rgba(160,160,160,.5);animation:smoke 1.6s ease-out forwards}
+  @keyframes smoke{from{transform:translate(-50%,0);opacity:.7}to{transform:translate(-30%,-46px) scale(2.4);opacity:0}}
+  .blow-controls{margin-top:46px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .btn{border:none;border-radius:999px;padding:14px 28px;font-family:var(--body);font-weight:700;font-size:1rem;cursor:pointer;transition:transform .15s}
+  .btn:hover{transform:translateY(-2px)}
+  .btn-coral{background:var(--coral);color:#fff;box-shadow:0 8px 20px rgba(255,107,87,.4)}
+  .btn-ghost{background:transparent;color:var(--ink);border:2px solid var(--ink)}
+  .mic-hint{margin-top:14px;color:var(--muted);font-size:.9rem;min-height:1.4em}
+  .wish-granted{margin-top:20px;font-family:var(--hand);font-size:2rem;color:var(--coral-deep);opacity:0;transition:opacity .8s}
+  .wish-granted.show{opacity:1}
+
+  /* cake lives in the hero */
+  .blow-ask{font-family:var(--hand);font-size:clamp(1.35rem,3.2vw,1.9rem);color:#ffe9b0;animation:askPulse 1.6s ease-in-out infinite}
+  @keyframes askPulse{0%,100%{transform:scale(1) rotate(-1.5deg)}50%{transform:scale(1.08) rotate(1.5deg)}}
+  .hero .cake-stage{width:min(250px,64vw);margin-top:64px}
+  .hero .blow-controls{margin-top:30px}
+  .hero .btn{padding:12px 22px;font-size:.92rem}
+  .hero .btn-ghost{color:#fff;border-color:rgba(255,255,255,.8)}
+  .hero .mic-hint{color:rgba(255,255,255,.85)}
+  .hero .wish-granted{color:var(--gold)}
+
+  /* ---------- timeline ---------- */
+  .timeline{position:relative;margin-top:20px}
+  .timeline::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:3px;transform:translateX(-50%);
+    background:repeating-linear-gradient(180deg,var(--coral) 0 10px,transparent 10px 20px)}
+  .tl-item{position:relative;width:50%;padding:20px 44px;opacity:0;transform:translateY(40px);transition:all .7s cubic-bezier(.2,.8,.3,1)}
+  .tl-item.visible{opacity:1;transform:none}
+  .tl-item:nth-child(odd){left:0;text-align:right}
+  .tl-item:nth-child(even){left:50%}
+  .tl-item .dot{position:absolute;top:32px;width:44px;height:44px;border-radius:50%;background:var(--card);box-shadow:var(--shadow);
+    display:flex;align-items:center;justify-content:center;font-size:1.3rem}
+  .tl-item:nth-child(odd) .dot{right:-22px}
+  .tl-item:nth-child(even) .dot{left:-22px}
+  .tl-card{background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:22px;display:inline-block;text-align:left;max-width:340px}
+  .tl-card .year{font-family:var(--display);color:var(--coral-deep);font-weight:800;font-size:1.1rem}
+  .tl-card h3{font-size:1.1rem;margin:4px 0 6px}
+  .tl-card p{color:var(--muted);font-size:.92rem;line-height:1.6}
+  .tl-photo{margin-top:12px;border-radius:12px;overflow:hidden;background:var(--bg-alt)}
+  .tl-photo img{width:100%;display:block}
+  .tl-photo .ph{display:none;align-items:center;justify-content:center;gap:8px;height:96px;
+    color:var(--muted);font-size:.85rem;border:2px dashed #e0d2bd;border-radius:12px}
+  .tl-photo.missing img{display:none}
+  .tl-photo.missing .ph{display:flex}
+  @media(max-width:680px){
+    .timeline::before{left:20px}
+    .tl-item{width:100%;left:0 !important;text-align:left;padding:16px 12px 16px 58px}
+    .tl-item .dot{left:-2px !important;right:auto !important}
+  }
+
+  /* ---------- polaroids ---------- */
+  .photo-section{background:var(--plum);color:#fff}
+  .photo-section .kicker{color:var(--gold)}
+  .photo-section .sub{color:rgba(255,255,255,.7)}
+  .polaroids{display:flex;flex-wrap:wrap;gap:26px;justify-content:center;margin-top:30px}
+  .polaroid{background:#fff;color:var(--ink);padding:12px 12px 40px;border-radius:4px;box-shadow:0 12px 30px rgba(0,0,0,.35);
+    transform:rotate(var(--rot,0deg));transition:transform .3s;width:200px;position:relative}
+  .polaroid:hover{transform:rotate(0) scale(1.08);z-index:5}
+  .polaroid .pic{height:170px;border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:3.4rem;overflow:hidden}
+  .polaroid .pic img{width:100%;height:100%;object-fit:cover;display:block}
+  .archive-strip{overflow:hidden;margin-top:56px;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+  .archive-track{display:flex;gap:14px;width:max-content;animation:scrollX 90s linear infinite}
+  .archive-track img{height:120px;width:auto;border-radius:10px;display:block;box-shadow:0 6px 18px rgba(0,0,0,.35)}
+  .archive-note{margin-top:14px;color:rgba(255,255,255,.55);font-size:.85rem;text-align:center}
+  @keyframes scrollX{to{transform:translateX(-50%)}}
+  .polaroid figcaption{font-family:var(--hand);font-size:1.25rem;text-align:center;margin-top:10px;color:#4a4238}
+  .polaroid .tape{position:absolute;top:-12px;left:50%;transform:translateX(-50%) rotate(-3deg);width:80px;height:24px;
+    background:rgba(244,185,66,.65);border-radius:2px}
+
+  /* ---------- favorites ---------- */
+  .fav-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px;margin-top:30px}
+  .fav-card{background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:24px;border-bottom:4px solid var(--teal);transition:transform .2s}
+  .fav-card:hover{transform:translateY(-6px)}
+  .fav-card .emoji{font-size:2rem}
+  .fav-card h3{font-size:.8rem;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin:10px 0 4px}
+  .fav-card p{font-weight:700;font-size:1.05rem}
+
+  /* ---------- quiz ---------- */
+  .quiz-section{background:var(--bg-alt)}
+  .quiz-card{background:var(--card);border-radius:24px;box-shadow:var(--shadow);padding:clamp(26px,5vw,46px);max-width:640px;margin:0 auto}
+  .quiz-progress{height:8px;background:var(--bg-alt);border-radius:999px;overflow:hidden;margin-bottom:26px}
+  .quiz-progress i{display:block;height:100%;background:linear-gradient(90deg,var(--coral),var(--gold));border-radius:999px;transition:width .4s}
+  .quiz-q{font-family:var(--display);font-size:1.4rem;margin-bottom:22px}
+  .quiz-opts{display:grid;gap:12px}
+  .quiz-opt{text-align:left;background:var(--bg);border:2px solid transparent;border-radius:14px;padding:14px 18px;
+    font-family:var(--body);font-size:1rem;cursor:pointer;transition:all .15s}
+  .quiz-opt:hover{border-color:var(--coral)}
+  .quiz-opt.correct{background:#e3f6ec;border-color:#2fa870}
+  .quiz-opt.wrong{background:#fde8e4;border-color:var(--coral-deep)}
+  .quiz-score{text-align:center}
+  .quiz-score .big{font-family:var(--display);font-size:3.4rem;color:var(--coral-deep)}
+
+  /* ---------- wish wall ---------- */
+  .wish-form{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:34px}
+  .wish-form input,.wish-form textarea{font-family:var(--body);font-size:1rem;border:2px solid #e8dccb;border-radius:14px;padding:13px 16px;background:var(--card)}
+  .wish-form input:focus,.wish-form textarea:focus{outline:none;border-color:var(--coral)}
+  .wish-form input{flex:1 1 180px}
+  .wish-form textarea{flex:3 1 320px;resize:vertical;min-height:52px}
+  .wishes{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px}
+  .wish{border-radius:18px;padding:22px;box-shadow:var(--shadow);background:var(--card);border-top:5px solid var(--gold);animation:wishIn .5s cubic-bezier(.2,1.4,.4,1)}
+  .wish:nth-child(3n){border-top-color:var(--coral)} .wish:nth-child(3n+1){border-top-color:var(--teal)}
+  @keyframes wishIn{from{transform:scale(.7);opacity:0}}
+  .wish p{line-height:1.6;margin-bottom:12px}
+  .wish .who{font-family:var(--hand);font-size:1.4rem;color:var(--coral-deep)}
+
+  /* ---------- balloons / footer ---------- */
+  .footer{background:linear-gradient(180deg,var(--bg) 0%,#ffe3d0 100%);text-align:center;padding-bottom:130px}
+  .balloon{position:fixed;bottom:-140px;font-size:0;z-index:55;cursor:pointer;animation:rise linear forwards}
+  .balloon i{display:block;width:64px;height:78px;border-radius:50% 50% 50% 50%/44% 44% 56% 56%;position:relative;
+    background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.75) 6%,transparent 40%),var(--bc,#ff6b57)}
+  .balloon i::after{content:'';position:absolute;bottom:-42px;left:50%;width:2px;height:44px;background:rgba(0,0,0,.25)}
+  @keyframes rise{from{transform:translateY(0) rotate(-4deg)}to{transform:translateY(-118vh) rotate(5deg)}}
+  .confetti-canvas{position:fixed;inset:0;pointer-events:none;z-index:50}
+  .made-with{margin-top:40px;color:var(--muted);font-size:.85rem}
+  .made-with b{color:var(--coral-deep)}
+</style>
+</head>
+<body>
+
+<button class="music-btn" id="musicBtn">🎵 Play music</button>
+<canvas class="confetti-canvas" id="confetti"></canvas>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="plane">✈️</div>
+  <div id="stars"></div>
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <div class="badge">🇳🇵 → 🇺🇸 A celebration travelling from Kathmandu to the USA</div>
+      <h1>Happy Birthday,<br><span class="name" id="heroName">Varun Dai!</span></h1>
+      <p class="tag">"Baaal ho." — you, iconically, about everything.</p>
+      <div class="countdown" id="countdown"></div>
+      <div class="today-banner" id="todayBanner" hidden>🎉 It's today! 🎉</div>
+    </div>
+    <div class="hero-cake">
+      <div class="blow-ask" id="blowAsk">Make a wish — blow out the candles! 👇</div>
+      <div class="cake-stage">
+        <div class="candles" id="candles"></div>
+        <div class="cake">
+          <div class="layer top"><div class="drip"></div></div>
+          <div class="layer mid"><div class="drip"></div></div>
+          <div class="layer base"><div class="drip"></div></div>
+          <div class="plate"></div>
+        </div>
+      </div>
+      <div class="blow-controls">
+        <button class="btn btn-coral" id="blowBtn">💨 Blow them out</button>
+        <button class="btn btn-ghost" id="micBtn">🎤 Use microphone</button>
+        <button class="btn btn-ghost" id="relightBtn" hidden>🔥 Relight</button>
+      </div>
+      <p class="mic-hint" id="micHint"></p>
+      <p class="wish-granted" id="wishGranted">✨ Wish granted. Happy Birthday! ✨</p>
+    </div>
+  </div>
+  <div class="scroll-cue">▼ scroll to celebrate</div>
+</header>
+
+<!-- LETTER -->
+<section>
+  <div class="wrap">
+    <p class="kicker">A message from your people</p>
+    <h2>Dear Varun Dai,</h2>
+    <p class="sub">Short and sweet — the memories have their own section below. 👇</p>
+    <div class="letter-card">
+      <div class="stamp">💌</div>
+      <p>Happy birthday, dai! 🎂 Congratulations on the Master's — you earned every bit of it. Keep staying cool (it comes naturally to you anyway), enjoy the life you're building over there, and don't you dare stop enjoying it.</p>
+      <p>Just two demands from this side of the planet: please make me meet my sister-in-law soon 👀 — and keep the gifts coming, hehe. 🎁</p>
+      <p>Miss you at the square table. See you sooooonnnnnest.</p>
+      <p class="sign">— Your Sushi 💛</p>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section>
+  <div class="wrap">
+    <p class="kicker">Our story so far</p>
+    <h2>The Memory Timeline</h2>
+    <p class="sub">Five years of "remember when…" — in order, for once.</p>
+    <div class="timeline" id="timeline"></div>
+  </div>
+</section>
+
+<!-- PHOTO WALL -->
+<section class="photo-section">
+  <div class="wrap">
+    <p class="kicker">The photo wall</p>
+    <h2>Proof it all happened</h2>
+    <p class="sub">Polaroids from the archive. Hover to straighten them out.</p>
+    <div class="polaroids" id="polaroids"></div>
+    <div class="archive-strip"><div class="archive-track" id="archiveTrack"></div></div>
+    <p class="archive-note">↑ the full archive, on loop — every photo from 5 years of chaos</p>
+  </div>
+</section>
+
+<!-- FAVORITES -->
+<section>
+  <div class="wrap">
+    <p class="kicker">The Varun Dai encyclopedia</p>
+    <h2>Essential facts</h2>
+    <p class="sub">Sourced from his living profile — the stuff the AI uses to theme this whole page.</p>
+    <div class="fav-grid" id="favGrid"></div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section class="quiz-section">
+  <div class="wrap">
+    <p class="kicker">Pop quiz</p>
+    <h2 style="text-align:center">How well do you know Varun Dai?</h2>
+    <p class="sub" style="margin:0 auto 40px;text-align:center">Auto-generated from his profile. No peeking at the sections above!</p>
+    <div class="quiz-card" id="quizCard"></div>
+  </div>
+</section>
+
+<!-- WISH WALL -->
+<section>
+  <div class="wrap">
+    <p class="kicker">The wish wall</p>
+    <h2>Leave Varun Dai a wish 💛</h2>
+    <p class="sub">Anyone with the link can sign the wall. Wishes stay hidden until midnight on the big day — today, they're all unlocked.</p>
+    <form class="wish-form" id="wishForm">
+      <input type="text" id="wishName" placeholder="Your name" maxlength="40" required>
+      <textarea id="wishText" placeholder="Your wish for Varun Dai…" maxlength="280" required></textarea>
+      <button class="btn btn-coral" type="submit">Post wish 🎈</button>
+    </form>
+    <div class="wishes" id="wishes"></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<section class="footer">
+  <p class="kicker">One more thing</p>
+  <h2>Send her off in style</h2>
+  <p class="sub" style="margin:0 auto 30px">Release a balloon into the page. Pop them if you dare.</p>
+  <button class="btn btn-coral" id="balloonBtn">🎈 Release balloons</button>
+  <p class="made-with">Prototype of an AI-generated celebration page · theme: <b>Traveler</b> · built for the <b>CelebrateAI</b> concept</p>
+</section>
+
+<script>
+/* ================= config (this is what the AI engine would generate) ================= */
+const person = {
+  name: "Varun Dai",
+  birthMonth: new Date().getMonth(),   // demo: birthday is today
+  birthDay: new Date().getDate(),
+  candleCount: 5,
+  timeline: [
+    {year:"2021", emoji:"🏢", title:"The square table at NAXA", text:"New office, and there he was — the cool senior, the most talented and hardworking frontend developer in the room, sitting right opposite me at the square table. Also: caught sleeping on camera exactly once. Immortalized below.", img:"photos/sleeping.jpg", imgAlt:"The legendary desk nap"},
+    {year:"2021", emoji:"💊", title:"The cough medicine incident", text:"Me: coughing through the entire office, refusing medicine as a lifestyle. You: 'You better take that medicine.' I took it. It worked. You were unbearably right, and it became the first of many times.", img:"photos/received_711534457015642.webp", imgAlt:"sick-day energy, archived"},
+    {year:"2022", emoji:"😂", title:"A gift group becomes THE meme group", text:"Born as a Facebook group to plan a gift for Shweta dd, our lovely GIS officer. Converted into a full-time meme distribution centre within days. That group is where the actual bond began.", img:"photos/received_1264656584393278.jpeg", imgAlt:"Exhibit A: who this on ghoda"},
+    {year:"2022", emoji:"🏍️", title:"The Saturday tradition", text:"Bike rides, travelling to new places, movies, swimming pool days — Saturday officially became the squad's holiday, and the best day of every week.", img:"photos/received_1845813542592580.jpeg", imgAlt:"Saturday squad, en route"},
+    {year:"2023", emoji:"🏡", title:"Family > friends > colleagues", text:"Somewhere along the way we stopped being colleagues and became family. Celebrating each other's wins, gossiping and complaining together. Let's be honest — the goss is the main glue. 😌", img:"photos/received_5955582784478681.jpeg", imgAlt:"Keep calm & squad on"},
+    {year:"2024", emoji:"🎂", title:"The cake-delivery heist & the OHO prank", text:"The day your sister was flying to the USA, we crashed the family celebration disguised as cake delivery guys — it was your birthday, how could we ever miss it? And the OHO cake prank… I still cannot believe you fell for it.", img:"photos/FB_IMG_1784183494130.jpg", imgAlt:"the heist crew"},
+    {year:"2024", emoji:"✈️", title:"The farewell", text:"Too emotional. Way too emotional. Off you went to the USA for your Master's, and the square table was never quite the same again.", img:"photos/received_604087309346614.jpeg", imgAlt:"the send-off"},
+    {year:"2025", emoji:"📱", title:"12,000 km, zero distance", text:"Video calls, regular life updates, gifts sent across all those miles, and your endless 'you should apply to the US!' motivation — which, of course, we never did. Haha.", img:"photos/received_1322236728565955.webp", imgAlt:"caught sleeping on Discord, again"},
+    {year:"2026", emoji:"🎓", title:"Master of Computer Science", text:"Through all the hustle and bustle — you finally did it. The breakthrough you always wished for: outgrowing everything you'd achieved so far. Next stop, corporate attire. Baaal ho! 🎉", img:"photos/received_662764416285925.jpeg", imgAlt:"new horizons, USA"}
+  ],
+  polaroids: [
+    {img:"photos/sleeping.jpg", caption:"the desk nap, immortalized"},
+    {img:"photos/received_873603020351038.jpeg", caption:"game zone Saturdays"},
+    {img:"photos/received_988341196148788.jpeg", caption:"squad on top 🏔️"},
+    {img:"photos/received_277321337995490.jpeg", caption:"accidental twins"},
+    {img:"photos/received_517458360585338.jpeg", caption:"Bhaktapur wanderers"},
+    {img:"photos/received_190609654086808.jpeg", caption:"trek buddies"},
+    {img:"photos/received_1648280162578064.jpeg", caption:"the office nap chronicles 😴"},
+    {img:"photos/FB_IMG_1784183488438.jpg", caption:"the whole squad"},
+    {img:"photos/received_584370436934425.jpeg", caption:"multitasking @ NAXA"}
+  ],
+  archive: [
+    "FB_IMG_1784183488438.jpg","FB_IMG_1784183494130.jpg","received_190609654086808.jpeg","received_248123284345960.jpeg",
+    "received_277321337995490.jpeg","received_318375203873234.jpeg","received_517458360585338.jpeg","received_584370436934425.jpeg",
+    "received_601552722101127.jpeg","received_604087309346614.jpeg","received_626766756397525.jpeg","received_658567773227372.jpeg",
+    "received_662764416285925.jpeg","received_680672426942851.webp","received_701360918804472.jpeg","received_711534457015642.webp",
+    "received_741225081496478.jpeg","received_761231621886599.jpeg","received_773260984136328.jpeg","received_796338135541959.jpeg",
+    "received_873603020351038.jpeg","received_875529957054989.webp","received_882604319542014.jpeg","received_897431664787469.webp",
+    "received_988341196148788.jpeg","received_1038122324236381.jpeg","received_1049538586425640.jpeg","received_1183750458995713.jpeg",
+    "received_1264656584393278.jpeg","received_1322236728565955.webp","received_1323894424973242.jpeg","received_1330481744189975.jpeg",
+    "received_1371154270994586.jpeg","received_1394817921306491.jpeg","received_1399048120846206.webp","received_1434819314055442.jpeg",
+    "received_1624208754760500.jpeg","received_1646159039513339.jpeg","received_1648280162578064.jpeg","received_1655749291668487.jpeg",
+    "received_1681949629330090.jpeg","received_1845813542592580.jpeg","received_1909672299365355.jpeg","received_2101303480063428.webp",
+    "received_5955582784478681.jpeg","sleeping.jpg"
+  ],
+  favorites: [
+    {emoji:"💻", label:"Superpower", value:"Frontend wizardry (NAXA-certified)"},
+    {emoji:"🎓", label:"Fresh achievement", value:"MS in Computer Science, USA"},
+    {emoji:"🗣️", label:"Iconic dialogue", value:"“Baaal ho.”"},
+    {emoji:"🏍️", label:"Sacred ritual", value:"Saturday rides & movie plans"},
+    {emoji:"😂", label:"Origin story", value:"A gift group turned meme group"},
+    {emoji:"💊", label:"Known cure", value:"Prescribing cough medicine that works"},
+    {emoji:"🫖", label:"Main glue", value:"The goss. Obviously."},
+    {emoji:"👔", label:"Next milestone", value:"The corporate attire era"}
+  ],
+  quiz: [
+    {q:"Where did this whole friendship begin?", opts:["A college reunion","Opposite sides of a square table at NAXA","A bus ride","Facebook comments"], a:1},
+    {q:"The legendary Facebook group was originally created to…", opts:["Share memes","Plan Saturday rides","Discuss a gift for Shweta dd","Complain about deadlines"], a:2},
+    {q:"What is Varun Dai's iconic dialogue?", opts:["“Baaal ho.”","“Ke garne.”","“Estimate it yourself.”","“One last bug.”"], a:0},
+    {q:"How did the squad crash the family celebration?", opts:["As musicians","Disguised as cake delivery guys","As lost tourists","Through the back door"], a:1},
+    {q:"What did Varun Dai just complete in the USA?", opts:["A marathon","An MBA","A Master's in Computer Science","A coding bootcamp"], a:2}
+  ],
+  seedWishes: [
+    {who:"Sushi", text:"Happy birthday dai! From square-table colleagues to family. Come back soon so Saturdays can be Saturdays again. 🏍️💛"},
+    {who:"The Meme Group", text:"Started with Shweta dd's gift, ended up as family. Congratulations on the Master's — Baaal ho! 🎓😂"},
+    {who:"The square table @ NAXA", text:"It's been quiet without you. Someone even stays awake at their desk now. Come visit. 😴"}
+  ]
+};
+
+/* ================= confetti engine ================= */
+const cvs = document.getElementById('confetti'), ctx = cvs.getContext('2d');
+let pieces = [], confettiRunning = false;
+const COLORS = ['#ff6b57','#f4b942','#0e9594','#4a2545','#ffffff','#ff9d2e'];
+function sizeCanvas(){ cvs.width = innerWidth; cvs.height = innerHeight; }
+addEventListener('resize', sizeCanvas); sizeCanvas();
+function burst(n, x, y){
+  for(let i=0;i<n;i++){
+    pieces.push({
+      x: x ?? Math.random()*cvs.width, y: y ?? -20,
+      vx:(Math.random()-.5)*(y!==undefined?12:4), vy: y!==undefined ? -(Math.random()*10+3) : Math.random()*2+1,
+      w: Math.random()*8+5, h: Math.random()*5+3,
+      color: COLORS[Math.floor(Math.random()*COLORS.length)],
+      rot: Math.random()*Math.PI, vr:(Math.random()-.5)*.3, life: 0
+    });
+  }
+  if(!confettiRunning){ confettiRunning = true; requestAnimationFrame(tick); }
+}
+function tick(){
+  ctx.clearRect(0,0,cvs.width,cvs.height);
+  pieces = pieces.filter(p => p.y < cvs.height + 30 && p.life < 400);
+  for(const p of pieces){
+    p.life++; p.vy += .12; p.x += p.vx; p.y += p.vy; p.rot += p.vr; p.vx *= .99;
+    ctx.save(); ctx.translate(p.x,p.y); ctx.rotate(p.rot);
+    ctx.fillStyle = p.color; ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h); ctx.restore();
+  }
+  if(pieces.length){ requestAnimationFrame(tick); } else { confettiRunning = false; }
+}
+
+/* ================= hero: name pop, stars, countdown ================= */
+const heroName = document.getElementById('heroName');
+heroName.innerHTML = [...heroName.textContent].map((c,i)=>`<span class="l" style="animation-delay:${.4+i*.08}s">${c===' '?'&nbsp;':c}</span>`).join('');
+const stars = document.getElementById('stars');
+for(let i=0;i<40;i++){
+  const s = document.createElement('div'); s.className='star';
+  const size = Math.random()*3+1;
+  s.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*45}%;animation-delay:${Math.random()*3}s`;
+  stars.appendChild(s);
+}
+function nextBirthday(){
+  const now = new Date();
+  let d = new Date(now.getFullYear(), person.birthMonth, person.birthDay);
+  if(d < new Date(now.getFullYear(), now.getMonth(), now.getDate())) d.setFullYear(d.getFullYear()+1);
+  return d;
+}
+const cdEl = document.getElementById('countdown');
+function renderCountdown(){
+  const now = new Date(), target = nextBirthday();
+  const isToday = target.getDate()===now.getDate() && target.getMonth()===now.getMonth() && target.getFullYear()===now.getFullYear();
+  if(isToday){
+    cdEl.hidden = true;
+    document.getElementById('todayBanner').hidden = false;
+    return;
+  }
+  const ms = target - now;
+  const d = Math.floor(ms/864e5), h = Math.floor(ms%864e5/36e5), m = Math.floor(ms%36e5/6e4), s = Math.floor(ms%6e4/1e3);
+  cdEl.innerHTML = [[d,'days'],[h,'hours'],[m,'mins'],[s,'secs']]
+    .map(([v,l])=>`<div class="count-cell"><b>${String(v).padStart(2,'0')}</b><small>${l}</small></div>`).join('');
+  setTimeout(renderCountdown, 1000);
+}
+renderCountdown();
+setTimeout(()=>burst(160), 900);
+
+/* ================= cake ================= */
+const candlesEl = document.getElementById('candles');
+for(let i=0;i<person.candleCount;i++){
+  const c = document.createElement('div');
+  c.className = 'candle'; c.title = 'Click to blow this one out';
+  c.innerHTML = '<div class="flame"></div>';
+  c.addEventListener('click', ()=>extinguish(c));
+  candlesEl.appendChild(c);
+}
+function litCandles(){ return [...candlesEl.children].filter(c=>!c.classList.contains('out')); }
+function extinguish(c){
+  if(c.classList.contains('out')) return;
+  c.classList.add('out');
+  if(litCandles().length===0) allOut();
+}
+function blowAll(){
+  litCandles().forEach((c,i)=>setTimeout(()=>extinguish(c), i*160));
+}
+function allOut(){
+  const r = candlesEl.getBoundingClientRect();
+  burst(140, r.left + r.width/2, r.top);
+  burst(120);
+  document.getElementById('wishGranted').classList.add('show');
+  document.getElementById('relightBtn').hidden = false;
+  document.getElementById('blowAsk').style.visibility = 'hidden';
+}
+document.getElementById('blowBtn').addEventListener('click', blowAll);
+document.getElementById('relightBtn').addEventListener('click', function(){
+  [...candlesEl.children].forEach(c=>c.classList.remove('out'));
+  document.getElementById('wishGranted').classList.remove('show');
+  document.getElementById('blowAsk').style.visibility = '';
+  this.hidden = true;
+});
+/* microphone blow detection */
+const micHint = document.getElementById('micHint');
+document.getElementById('micBtn').addEventListener('click', async ()=>{
+  try{
+    const stream = await navigator.mediaDevices.getUserMedia({audio:true});
+    const ac = new AudioContext(), src = ac.createMediaStreamSource(stream);
+    const analyser = ac.createAnalyser(); analyser.fftSize = 512; src.connect(analyser);
+    const data = new Uint8Array(analyser.frequencyBinCount);
+    micHint.textContent = '🎤 Listening… blow toward your mic!';
+    let loud = 0;
+    (function listen(){
+      if(!litCandles().length){ stream.getTracks().forEach(t=>t.stop()); micHint.textContent=''; return; }
+      analyser.getByteTimeDomainData(data);
+      let sum = 0; for(const v of data){ const d=(v-128)/128; sum += d*d; }
+      const rms = Math.sqrt(sum/data.length);
+      if(rms > .18){ loud++; if(loud > 4){ blowAll(); } } else { loud = Math.max(0, loud-1); }
+      requestAnimationFrame(listen);
+    })();
+  }catch(e){
+    micHint.textContent = 'No mic access — the button works just as well 💨';
+  }
+});
+
+/* ================= timeline ================= */
+const tl = document.getElementById('timeline');
+tl.innerHTML = person.timeline.map(t=>`
+  <div class="tl-item">
+    <div class="dot">${t.emoji}</div>
+    <div class="tl-card"><div class="year">${t.year}</div><h3>${t.title}</h3><p>${t.text}</p>${
+      t.img ? `<div class="tl-photo"><img src="${t.img}" alt="${t.imgAlt||''}"
+        onerror="this.parentElement.classList.add('missing')"><span class="ph">📷 ${t.imgAlt||'photo'} — coming soon</span></div>` : ''
+    }</div>
+  </div>`).join('');
+const io = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } }),{threshold:.25});
+document.querySelectorAll('.tl-item').forEach(el=>io.observe(el));
+
+/* ================= polaroids ================= */
+document.getElementById('polaroids').innerHTML = person.polaroids.map((p,i)=>`
+  <figure class="polaroid" style="--rot:${(i%2? 1:-1)*(2+Math.random()*4)}deg">
+    <div class="tape"></div>
+    <div class="pic" style="${p.bg?`background:${p.bg}`:''}">${
+      p.img ? `<img src="${p.img}" alt="${p.caption}" onerror="this.replaceWith('📷')">` : (p.emoji||'📷')
+    }</div>
+    <figcaption>${p.caption}</figcaption>
+  </figure>`).join('');
+const strip = document.getElementById('archiveTrack');
+if(strip){
+  const imgs = person.archive.map(f=>`<img src="photos/${f}" alt="" onerror="this.remove()">`).join('');
+  strip.innerHTML = imgs + imgs; // duplicated for a seamless loop
+}
+
+/* ================= favorites ================= */
+document.getElementById('favGrid').innerHTML = person.favorites.map(f=>`
+  <div class="fav-card"><div class="emoji">${f.emoji}</div><h3>${f.label}</h3><p>${f.value}</p></div>`).join('');
+
+/* ================= quiz ================= */
+const quizCard = document.getElementById('quizCard');
+let qi = 0, score = 0, locked = false;
+function renderQuiz(){
+  if(qi >= person.quiz.length){
+    const perfect = score === person.quiz.length;
+    quizCard.innerHTML = `<div class="quiz-score">
+      <div class="big">${score}/${person.quiz.length}</div>
+      <p style="margin:10px 0 20px">${perfect ? "Perfect score — you might BE Sarah. 🏆" : score >= 3 ? "Certified inner circle. 💛" : "Time for another road trip together. 🚗"}</p>
+      <button class="btn btn-coral" id="quizRetry">Try again</button></div>`;
+    document.getElementById('quizRetry').addEventListener('click', ()=>{ qi=0; score=0; renderQuiz(); });
+    if(score >= 3) burst(100);
+    return;
+  }
+  const item = person.quiz[qi];
+  locked = false;
+  quizCard.innerHTML = `
+    <div class="quiz-progress"><i style="width:${qi/person.quiz.length*100}%"></i></div>
+    <div class="quiz-q">${qi+1}. ${item.q}</div>
+    <div class="quiz-opts">${item.opts.map((o,i)=>`<button class="quiz-opt" data-i="${i}">${o}</button>`).join('')}</div>`;
+  quizCard.querySelectorAll('.quiz-opt').forEach(btn=>btn.addEventListener('click', ()=>{
+    if(locked) return; locked = true;
+    const pick = +btn.dataset.i;
+    if(pick === item.a){ btn.classList.add('correct'); score++; }
+    else{ btn.classList.add('wrong'); quizCard.querySelector(`[data-i="${item.a}"]`).classList.add('correct'); }
+    setTimeout(()=>{ qi++; renderQuiz(); }, 900);
+  }));
+}
+renderQuiz();
+
+/* ================= wish wall ================= */
+const wishesEl = document.getElementById('wishes');
+function loadWishes(){
+  let saved = [];
+  try{ saved = JSON.parse(localStorage.getItem('celebrate-wishes') || '[]'); }catch(e){}
+  return [...saved, ...person.seedWishes];
+}
+function esc(s){ const d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+function renderWishes(){
+  wishesEl.innerHTML = loadWishes().map(w=>`<div class="wish"><p>${esc(w.text)}</p><div class="who">— ${esc(w.who)}</div></div>`).join('');
+}
+renderWishes();
+document.getElementById('wishForm').addEventListener('submit', e=>{
+  e.preventDefault();
+  const who = document.getElementById('wishName').value.trim();
+  const text = document.getElementById('wishText').value.trim();
+  if(!who || !text) return;
+  let saved = [];
+  try{ saved = JSON.parse(localStorage.getItem('celebrate-wishes') || '[]'); }catch(e){}
+  saved.unshift({who, text});
+  localStorage.setItem('celebrate-wishes', JSON.stringify(saved.slice(0,50)));
+  e.target.reset();
+  renderWishes();
+  burst(80);
+});
+
+/* ================= balloons ================= */
+const BALLOON_COLORS = ['#ff6b57','#f4b942','#0e9594','#b98ed0','#ff9d9d'];
+document.getElementById('balloonBtn').addEventListener('click', ()=>{
+  for(let i=0;i<7;i++){
+    const b = document.createElement('div');
+    b.className = 'balloon';
+    b.style.left = (5 + Math.random()*88) + 'vw';
+    b.style.animationDuration = (6 + Math.random()*5) + 's';
+    b.style.animationDelay = (Math.random()*1.2) + 's';
+    b.innerHTML = `<i style="--bc:${BALLOON_COLORS[i % BALLOON_COLORS.length]}"></i>`;
+    b.addEventListener('click', ev=>{
+      const r = b.getBoundingClientRect();
+      burst(30, r.left + r.width/2, r.top + r.height/2);
+      b.remove(); ev.stopPropagation();
+    });
+    b.addEventListener('animationend', ()=>b.remove());
+    document.body.appendChild(b);
+  }
+});
+
+/* ================= music (WebAudio 'Happy Birthday') ================= */
+let musicCtx = null, musicOn = false, musicTimer = null;
+const MELODY = [ // [semitone offset from C5, beats]
+  [0,.75],[0,.25],[2,1],[0,1],[5,1],[4,2],
+  [0,.75],[0,.25],[2,1],[0,1],[7,1],[5,2],
+  [0,.75],[0,.25],[12,1],[9,1],[5,1],[4,1],[2,2],
+  [10,.75],[10,.25],[9,1],[5,1],[7,1],[5,2]
+];
+function playMelody(){
+  const bpm = 110, beat = 60/bpm;
+  let t = musicCtx.currentTime + .1;
+  for(const [semi,beats] of MELODY){
+    const osc = musicCtx.createOscillator(), g = musicCtx.createGain();
+    osc.type = 'triangle';
+    osc.frequency.value = 523.25 * Math.pow(2, semi/12);
+    g.gain.setValueAtTime(0, t);
+    g.gain.linearRampToValueAtTime(.18, t + .03);
+    g.gain.exponentialRampToValueAtTime(.001, t + beats*beat*.92);
+    osc.connect(g).connect(musicCtx.destination);
+    osc.start(t); osc.stop(t + beats*beat);
+    t += beats*beat;
+  }
+  musicTimer = setTimeout(()=>{ if(musicOn) playMelody(); }, (t - musicCtx.currentTime + .5) * 1000);
+}
+document.getElementById('musicBtn').addEventListener('click', function(){
+  if(!musicOn){
+    musicCtx = musicCtx || new AudioContext();
+    musicCtx.resume();
+    musicOn = true; this.textContent = '🔇 Stop music';
+    playMelody();
+  }else{
+    musicOn = false; clearTimeout(musicTimer); this.textContent = '🎵 Play music';
+  }
+});
+</script>
+</body>
+</html>
