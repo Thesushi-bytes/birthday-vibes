@@ -48,9 +48,12 @@
   @keyframes fly{from{transform:translateX(-10vw) translateY(0) rotate(8deg)}50%{transform:translateX(55vw) translateY(-40px) rotate(4deg)}to{transform:translateX(120vw) translateY(10px) rotate(10deg)}}
   .star{position:absolute;border-radius:50%;background:#fff;opacity:.7;animation:twinkle 3s ease-in-out infinite}
   @keyframes twinkle{0%,100%{opacity:.15}50%{opacity:.8}}
-  .music-btn{position:fixed;top:18px;right:18px;z-index:60;background:var(--plum);color:#fff;border:none;border-radius:999px;
-    padding:10px 18px;font-family:var(--body);font-weight:700;font-size:.85rem;cursor:pointer;box-shadow:var(--shadow)}
-  .music-btn:hover{transform:scale(1.05)}
+  .music-btn{position:absolute;right:clamp(18px,5vw,52px);bottom:70px;z-index:12;width:46px;height:46px;
+    display:grid;place-items:center;background:rgba(255,255,255,.16);color:#fff;border:1px solid rgba(255,255,255,.38);
+    border-radius:50%;font-size:1.35rem;cursor:pointer;box-shadow:0 12px 28px rgba(0,0,0,.22);
+    backdrop-filter:blur(8px);transition:transform .18s ease,background .18s ease}
+  .music-btn:hover{transform:scale(1.08);background:rgba(255,255,255,.24)}
+  .music-btn:focus-visible{outline:3px solid rgba(255,196,107,.85);outline-offset:3px}
 
   /* ---------- letter ---------- */
   .letter-card{background:var(--card);border-radius:24px;box-shadow:var(--shadow);padding:clamp(28px,5vw,56px);
@@ -203,7 +206,6 @@
 </head>
 <body>
 
-<button class="music-btn" id="musicBtn">🔇 Stop music</button>
 <canvas class="confetti-canvas" id="confetti"></canvas>
 
 <!-- HERO -->
@@ -238,6 +240,7 @@
       <p class="wish-granted" id="wishGranted">✨ Wish granted. Happy Birthday! ✨</p>
     </div>
   </div>
+  <button class="music-btn" id="musicBtn" aria-label="Mute music" title="Mute music">🔊</button>
   <div class="scroll-cue">▼ scroll to celebrate</div>
 </header>
 
@@ -647,13 +650,19 @@ function playMelody(){
   }
   musicTimer = setTimeout(()=>{ if(musicOn) playMelody(); }, (t - musicCtx.currentTime + .5) * 1000);
 }
+function setMusicButton(isPlaying){
+  const btn = document.getElementById('musicBtn');
+  btn.textContent = isPlaying ? '🔊' : '🔈';
+  btn.setAttribute('aria-label', isPlaying ? 'Mute music' : 'Play music');
+  btn.title = isPlaying ? 'Mute music' : 'Play music';
+}
 function startMusic(){
   musicOn = true;
   const ctx = getMusicContext();
   musicGain.gain.cancelScheduledValues(ctx.currentTime);
   musicGain.gain.setValueAtTime(.8, ctx.currentTime);
   this?.blur?.();
-  document.getElementById('musicBtn').textContent = '🔇 Stop music';
+  setMusicButton(true);
   ctx.resume().then(()=>{
     if(!musicOn || musicStarted) return;
     musicStarted = true;
@@ -668,7 +677,7 @@ function stopMusic(){
     musicGain.gain.cancelScheduledValues(musicCtx.currentTime);
     musicGain.gain.setValueAtTime(0, musicCtx.currentTime);
   }
-  document.getElementById('musicBtn').textContent = '🎵 Play music';
+  setMusicButton(false);
 }
 document.getElementById('musicBtn').addEventListener('click', function(){
   if(!musicOn){
